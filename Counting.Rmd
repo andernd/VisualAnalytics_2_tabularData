@@ -1,0 +1,47 @@
+Counting
+
+```{r}
+length(unique(eduwa$Free.Lunch))
+```
+
+```{r}
+summary(eduwa$Free.Lunch)
+```
+
+```{r}
+library(colorspace)
+
+base= ggplot(eduwa3,aes(x = Free.Lunch))  
+h1= base + geom_histogram(binwidth = 250,boundary=0)
+
+h1= h1 + stat_bin(binwidth = 250, aes(label=..count..), 
+                  geom = "text",boundary = 0,vjust=-0.5)
+
+titleText6 = "Free Lunch in Washington Schools"
+
+ytext = "Frequency"
+xtext = "Number of Schools"
+
+h1 = h1 + labs(title=titleText6,
+               caption=SourceText1,
+               ylab=ytext,
+               xlab=xtext)
+
+h1 = h1 + theme(plot.margin = unit(c(.75,1,.5,.5), 'cm'),
+                text = element_text(colour = 'gray25'),
+                plot.title = element_text(hjust=0.5,
+                                          face = 'bold',
+                                          size = 15),
+                 panel.background = element_rect(fill = 'white'),
+                axis.ticks.y = element_blank(),
+                axis.text.y = element_blank())
+                
+
+
+
+h1 + coord_cartesian(ylim = c(0, 2000)) 
+
+
+```
+
+
